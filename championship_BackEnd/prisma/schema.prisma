@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(uuid())
+  name            String
+  email           String
+  password        String
+  teamName        String
+  createdAt       DateTime?        @default(now())
+  updatedAt       DateTime?        @default(now())
+  roundsHome      Round[]          @relation("playerRounds")
+  roundVisiting   Round[]          @relation("visitingRounds")
+  classifications Classification[]
+
+  @@map("users")
+}
+
+model Round {
+  id                 String    @id @default(uuid())
+  roundNumber        Int
+  homePlayer_id      String?   @default("")
+  homePlayer         String?
+  scoreHome          Int
+  scoreVisiting      Int
+  visitingPlayers_id String?   @default("")
+  visitingPlayers    String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  deletedAt          DateTime?
+  roundHome          User?     @relation("playerRounds", fields: [homePlayer_id], references: [id])
+  roundVisiting      User?     @relation("visitingRounds", fields: [visitingPlayers_id], references: [id])
+
+  @@map("rounds")
+}
+
+model Classification {
+  id         String @id @default(uuid())
+  team_id    String
+  team_name  String
+  namePlayer String
+  J          Int    @default(0)
+  P          Int    @default(0)
+  V          Int    @default(0)
+  E          Int    @default(0)
+  D          Int    @default(0)
+  GP         Int    @default(0)
+  GC         Int    @default(0)
+  SG         Int    @default(0)
+  player_id  String
+  user       User   @relation(fields: [player_id], references: [id])
+
+  @@map("classifications")
+}
+
+model Team {
+  id   String @id @default(uuid())
+  name String
+
+  @@map("teams")
+}
