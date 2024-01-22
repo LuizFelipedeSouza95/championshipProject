@@ -11,7 +11,7 @@ export function Header() {
     return (
         <header className={style.headerContainer}>
             <div className={style.headerContent}>
-                <Link href="/classification">
+                <Link href="/championships">
                     <h1>Campeonato</h1>
                     {/* <img src="/logo.svg" width={190} height={60} /> */}
                 </Link>

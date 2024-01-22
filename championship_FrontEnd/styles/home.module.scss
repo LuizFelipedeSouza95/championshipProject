@@ -37,6 +37,10 @@
     margin-top: 1rem;
     color: var(--white);
     cursor: pointer;
+    
+    &:hover {
+        color: var(--gray-100);
+    }
 }
 
 .labelTeam {

@@ -15,7 +15,7 @@ export function canSSRGuest<P extends { [key: string]: any }>(
     if (cookies["@nextAuth.token"]) {
       return {
         redirect: {
-          destination: "/classification",
+          destination: "/championships",
           permanent: false,
         },
       };

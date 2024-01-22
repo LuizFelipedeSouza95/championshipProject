@@ -77,13 +77,11 @@ export default function SignUp({ teamList }: TeamListProps) {
             name,
             email,
             password,
-            team: team[teamSelected].name
+            team: team[teamSelected].name,
+            teamId: team[teamSelected].id
         }
 
-        //console.log(data);
-
         await signUp(data);
-
         setLoading(false)
     }
 
@@ -151,9 +149,7 @@ export default function SignUp({ teamList }: TeamListProps) {
 
 export const getServerSideProps = canSSRGuest(async (ctx: any) => {
     const apliClient = setupAPIClient(ctx)
-
-    const response = await apliClient.get('/teams');
-
+    const response = await apliClient.get('/all-teams');
     return {
         props: {
             teamList: response.data

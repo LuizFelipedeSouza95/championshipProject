@@ -28,6 +28,7 @@ type SignUpProps = {
     email: string;
     password: string;
     team: string;
+    teamId: string;
 }
 
 type AuthProviderProps = {
@@ -54,7 +55,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
         const { '@nextAuth.token': token } = parseCookies();
         if (token) {
-            api.get('/me').then(response => {
+            api.get('/detail-me').then(response => {
                 const { id, name, email } = response.data;
 
                 setUser({
@@ -72,7 +73,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     async function signIn(credentials: SignInProps) {
         try {
-            const response = await api.post('/session', {
+            const response = await api.post('/auth-session', {
                 email: credentials.email,
                 password: credentials.password
             })
@@ -102,7 +103,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 transition: Zoom
             });
 
-            Router.push('/classification')
+            Router.push('/championships')
 
         } catch (error) {
             toast.error('Erro ao acessar!', {
@@ -119,12 +120,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     async function signUp(credentials: SignUpProps) {
         try {
-            const response = await api.post('/users', {
+            const response = await api.post('/create-users', {
                 name: credentials.name,
                 email: credentials.email,
                 password: credentials.password,
                 teamName: credentials.team
             })
+
+            const createClassification = await api.post('/create-classification', {
+                namePlayer: credentials.name,
+                team_id: credentials.teamId
+            })
+
             toast.success('Conta criada com sucesso!', {
                 position: "top-right",
                 autoClose: 2000,

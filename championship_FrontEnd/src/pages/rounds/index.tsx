@@ -108,7 +108,7 @@ export default function Classification({ rounds }: HomeProps) {
 export const getServerSideProps = canSSRAuth(async (ctx: any) => {
     const apliClient = setupAPIClient(ctx)
 
-    const response = await apliClient.get('/round');
+    const response = await apliClient.get('/all-round');
 
     return {
         props: {

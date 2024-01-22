@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Sujeito Pizza - Faça seu login</title>
+        <title>Login</title>
       </Head>
       <main className={styles.containerMain}>
         {/* <Image src={logoImg} alt="Logo Sujeito Pizzaria" priority /> */}

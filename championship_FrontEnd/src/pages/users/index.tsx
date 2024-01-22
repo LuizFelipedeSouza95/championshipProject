@@ -70,7 +70,7 @@ export default function Users({ users }: HomeProps) {
 export const getServerSideProps = canSSRAuth(async (ctx: any) => {
     const apliClient = setupAPIClient(ctx)
 
-    const response = await apliClient.get('/users');
+    const response = await apliClient.get('/all-users');
 
     return {
         props: {

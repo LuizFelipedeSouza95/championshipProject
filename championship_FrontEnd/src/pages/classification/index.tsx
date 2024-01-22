@@ -2,10 +2,10 @@ import { useState, FormEvent } from 'react';
 import Head from "next/head";
 import { Header } from '../../components/Header'
 import style from './style.module.scss';
-import { toast, Zoom } from 'react-toastify';
+//import { toast, Zoom } from 'react-toastify';
 import { setupAPIClient } from '@/src/services/api';
 import { canSSRAuth } from '@/src/utils/canSSRAuth';
-import { FiRefreshCcw } from 'react-icons/fi';
+//import { FiRefreshCcw } from 'react-icons/fi';
 
 type ClassificationProps = {
     id: string;
@@ -90,7 +90,7 @@ export default function Classification({ classification }: HomeProps) {
 export const getServerSideProps = canSSRAuth(async (ctx: any) => {
     const apliClient = setupAPIClient(ctx)
 
-    const response = await apliClient.get('/classification');
+    const response = await apliClient.get('/all-classification');
 
     return {
         props: {
