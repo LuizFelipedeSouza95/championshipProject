@@ -34,7 +34,7 @@ class CreateRoundService {
             scoreVisiting: 0,
             visitingPlayers: jogo.fora,
             visitingPlayers_id: visitPlayerId,
-            disabledInputs: false,
+            //disabledInputs: false,
           },
           select: {
             id: true,
@@ -43,7 +43,7 @@ class CreateRoundService {
             scoreHome: true,
             visitingPlayers: true,
             scoreVisiting: true,
-            disabledInputs: true,
+            //disabledInputs: true,
           },
         });
 

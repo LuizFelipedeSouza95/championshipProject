@@ -65,3 +65,12 @@ model Team {
 
   @@map("teams")
 }
+
+model Championship {
+  id   String @id @default(uuid())
+  name String
+  maxPlayers Int
+  players String[]
+
+  @@map("championships")
+}

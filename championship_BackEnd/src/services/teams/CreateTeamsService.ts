@@ -10,6 +10,8 @@ class CreateTeamsService {
       skipDuplicates: true,
     });
 
+    //const allTeams = await prismaClient.team.findMany();
+
     return createdTeams;
   }
 }
