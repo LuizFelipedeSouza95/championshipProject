@@ -1,12 +1,12 @@
 import Modal from 'react-modal';
 import style from './style.module.scss';
 import { FiX } from 'react-icons/fi';
-import { ChampionshipsItemProps } from '../../pages/championships'
+import { ChampionshipsProps } from '../../pages/championships'
 
 interface ModalChampionshipsProps {
     isOpen: boolean;
     onRequestClose: () => void;
-    championships: ChampionshipsItemProps[];
+    championships: ChampionshipsProps[];
     //handleFinishOrder: (id: string) => void
 }
 
